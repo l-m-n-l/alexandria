@@ -2,27 +2,39 @@ import plyvel
 import os
 
 class Alexandria():
-	def __init__(self, location):
-		os.makedirs(location + "/alexandria")
+	class Document():
+		def __init__(self, location):
+			os.makedirs(location + "/alexandria")
 
-		self.location = location
-		self.current_collection_object = None
-		self.collections = []
+			self.location = location
+			self.current_collection_object = None
+			self.collections = []
 
-	class Collection():
-		def __init__(self, name):
-			self.name = name
+		class Collection():
+			def __init__(self, name):
+				self.name = name
 
-			self.kvstore = plyvel.DB("", create_if_missing=True)
+				self.kvstore = plyvel.DB("", create_if_missing=True)
 
-		def create_document(self, obj):
-			self.kvstore.put(key, obj)
+			def retrieve_document(self, ):
 
-		def delete_document(self, key):
-			self.kvstore.delete(key)
+			def create_document(self, obj):
+				self.kvstore.put(key, obj)
 
-		def update_document(self, key, obj):
-			self.kvstore.update(key, obj)
+			def delete_document(self, key):
+				self.kvstore.delete(key)
 
-		class Document():
-			def __init__(self, ):		
+			def update_document(self, key, obj):
+				self.kvstore.update(key, obj)
+
+
+	class Graph():
+		def __init__(self, location, name):
+			os.makedirs(location + "/alexandria/" + name)
+
+			self.location = location
+			self.current_collection_object = None
+			self.graphs = []
+
+		class Node():
+			def __init__(self, ):	
